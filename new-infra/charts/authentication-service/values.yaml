@@ -16,7 +16,7 @@ podLabels: {}
 
 service:
   type: NodePort
-  port: 30005
+  port: 80
 
 # Additional volumes on the output Deployment definition.
 volumes: []
