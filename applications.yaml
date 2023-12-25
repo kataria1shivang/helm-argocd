@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: im-applicationsss
+  name: im-applicationssss
   namespace: argocd
   # finalizers:
   # - resources-finalizer.argocd.argoproj.io
@@ -25,6 +25,7 @@ spec:
         helm:
           valueFiles:
             - 'charts/{{ path.basename }}/values.yaml'
+            - 'values.yaml'
       destination:
         namespace: dev
         server: https://kubernetes.default.svc
