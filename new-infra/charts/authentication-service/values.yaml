@@ -15,8 +15,8 @@ podLabels: {}
 
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 30005
 
 # Additional volumes on the output Deployment definition.
 volumes: []
