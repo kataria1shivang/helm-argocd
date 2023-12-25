@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: im_applications
+  namespace: argocd
+spec:
+  generators:
+    - git:
+      repoURL: 
+      revision: HEAD
+      directories:
+        - path: new-infra/charts/*
+  template:
+    metadata:
+      name: {{ path.basename }}
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL:
+        targetRevision: HEAD
+        path: new-infra
+        helm:
+          valueFiles:
+            - "charts/{{ path.basename }}/values.yaml"
+            - "charts/values.yaml"
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true 
+        automated:
+          prune: true
+      
