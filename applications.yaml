@@ -1,31 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: im_applications
+  name: im-applications
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
     - git:
-      repoURL: 
-      revision: HEAD
-      directories:
-        - path: new-infra/charts/*
+        repoURL: https://github.com/coderguy1998/helm-argocd
+        revision: HEAD
+        directories:
+          - path: new-infra/charts/*
   template:
     metadata:
-      name: {{ path.basename }}
-      namespace: argocd
+      name: "{{ path.basename }}"
+      namespace: dev
     spec:
       project: default
       source:
-        repoURL:
+        repoURL: https://github.com/coderguy1998/helm-argocd
         targetRevision: HEAD
         path: new-infra
         helm:
           valueFiles:
-            - "charts/{{ path.basename }}/values.yaml"
+            - 'charts/{{ path.basename }}/values.yaml'
             - "charts/values.yaml"
       destination:
-        namespace: argocd
+        namespace: dev
         server: https://kubernetes.default.svc
 
       syncPolicy:
