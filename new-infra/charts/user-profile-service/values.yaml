@@ -15,7 +15,7 @@ podLabels: {}
 
 
 service:
-  type: LoadBalancer
+  type: NodePort
   port: 80
 
 
