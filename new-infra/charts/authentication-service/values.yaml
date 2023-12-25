@@ -15,7 +15,7 @@ podLabels: {}
 
 
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 80
 
 # Additional volumes on the output Deployment definition.

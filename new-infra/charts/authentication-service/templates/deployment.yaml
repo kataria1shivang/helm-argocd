@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "authentication_service.labels" . | nindent 4 }}
 spec:
+  replicas: {{.Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "authentication_service.selectorLabels" . | nindent 6 }}

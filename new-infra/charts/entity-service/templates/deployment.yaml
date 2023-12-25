@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "entity_service.labels" . | nindent 4 }}
 spec:
+  replicas: {{.Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "entity_service.selectorLabels" . | nindent 6 }}
