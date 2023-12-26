@@ -1,7 +1,10 @@
-apiVersion: v2
+apiVersion: v3
 name: new-infra
 description: A Helm chart for Kubernetes
-
+dependencies:
+    - name: authentication_service
+    - name: user_profile_service
+    - name: entity_service 
 #   - name: mongodb
 #     version: 14.2.8
 #     repository: "https://charts.bitnami.com/bitnami"

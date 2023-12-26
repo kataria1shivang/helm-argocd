@@ -21,10 +21,11 @@ spec:
       source:
         repoURL: https://github.com/coderguy1998/helm-argocd
         targetRevision: HEAD
-        path: new-infra
+        path: "{{path}}"
+        # path: new-infra/charts/{{ path.basename }}
         helm:
           valueFiles:
-            - 'charts/{{ path.basename }}/values.yaml'
+            # - 'charts/{{ path.basename }}/values.yaml'
             - 'values.yaml'
       destination:
         namespace: dev
